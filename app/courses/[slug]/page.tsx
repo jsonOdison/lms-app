@@ -1,30 +1,131 @@
 "use client";
 
-import React from 'react';
-import { useParams } from 'next/navigation';
-import CourseDetail from '../../../src/components/CourseDetail';
+import React from "react";
+import { useParams } from "next/navigation";
 
 const courseData = {
   flutter: {
-    title: 'Flutter Development',
-    description: 'Learn to build beautiful cross-platform apps with Flutter.',
-    content: 'Flutter is an open-source UI software development toolkit created by Google. It is used to develop cross-platform applications for Android, iOS, Linux, macOS, Windows, and the web from a single codebase.',
+    title: "Flutter Development",
+    description: "Learn to build beautiful cross-platform apps with Flutter.",
+    content: {
+      overview:
+        "Flutter is a UI toolkit for building fast, cross-platform apps with a single codebase. It uses widgets as the core building block for UI.",
+      topics: [
+        {
+          title: "Widgets",
+          points: [
+            "Everything in Flutter is a widget",
+            "Stateless vs Stateful widgets",
+            "Widget composition",
+          ],
+        },
+        {
+          title: "State Management",
+          points: [
+            "setState fundamentals",
+            "Provider basics",
+            "App-wide reactive state",
+          ],
+        },
+        {
+          title: "UI Building",
+          points: [
+            "Material and Cupertino styles",
+            "Layout with Row/Column",
+            "Working with themes",
+          ],
+        },
+      ],
+    },
   },
+
   java: {
-    title: 'Java Programming',
-    description: 'Master the fundamentals of Java for backend and Android development.',
-    content: 'Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. It is a popular choice for building enterprise-scale applications.',
+    title: "Java Programming",
+    description:
+      "Master the fundamentals of Java for backend and Android development.",
+    content: {
+      overview:
+        "Java is a robust OOP language used for backend, Android, and enterprise systems.",
+      topics: [
+        {
+          title: "OOP Concepts",
+          points: ["Classes and Objects", "Inheritance", "Polymorphism"],
+        },
+        {
+          title: "Core APIs",
+          points: ["Collections", "Streams", "Concurrency basics"],
+        },
+        {
+          title: "Backend Work",
+          points: [
+            "Spring Boot basics",
+            "REST controllers",
+            "Dependency Injection",
+          ],
+        },
+      ],
+    },
   },
+
   nextjs: {
-    title: 'Next.js for Beginners',
-    description: 'Get started with server-side rendering and static site generation using Next.js.',
-    content: 'Next.js is a React framework that enables several extra features, including server-side rendering and generating static websites. It is fast, flexible, and easy to use.',
+    title: "Next.js for Beginners",
+    description:
+      "Get started with server-side rendering and static site generation using Next.js.",
+    content: {
+      overview:
+        "Next.js is a framework built on top of React adding routing, SSR, SSG, and API routes.",
+      topics: [
+        {
+          title: "Routing",
+          points: ["File-based pages", "Dynamic routes", "Nested routes"],
+        },
+        {
+          title: "Rendering",
+          points: [
+            "SSR vs SSG basics",
+            "Client vs Server components",
+            "Data fetching",
+          ],
+        },
+        {
+          title: "Styling",
+          points: ["Tailwind integration", "CSS modules", "Global styles"],
+        },
+      ],
+    },
   },
 };
 
-const CourseDetailPage: React.FC = () => {
+const CourseDetail = ({ title, description, content }) => {
+  return (
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-4xl font-bold mb-4">{title}</h1>
+      <p className="text-gray-600 mb-6">{description}</p>
+
+      <div className="mb-10">
+        <h2 className="text-2xl font-semibold mb-2">Overview</h2>
+        <p className="leading-relaxed">{content.overview}</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {content.topics.map((t, i) => (
+          <div key={i} className="p-4 border rounded-lg shadow-sm">
+            <h3 className="text-xl font-semibold mb-2">{t.title}</h3>
+            <ul className="list-disc ml-5 space-y-1">
+              {t.points.map((p, idx) => (
+                <li key={idx}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const CourseDetailPage = () => {
   const params = useParams();
-  const course = courseData[params.slug as keyof typeof courseData];
+  const course = courseData[params.slug];
 
   if (!course) {
     return <div className="text-center py-20">Course not found.</div>;
