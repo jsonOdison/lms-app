@@ -19,6 +19,9 @@ const courseData = {
             "Everything in Flutter is a widget",
             "Stateless vs Stateful widgets",
             "Widget composition",
+            "Custom widgets",
+            "InheritedWidget usage",
+            "Widget lifecycle"
           ],
         },
         {
@@ -27,6 +30,9 @@ const courseData = {
             "setState fundamentals",
             "Provider basics",
             "App-wide reactive state",
+            "Bloc pattern introduction",
+            "Riverpod overview",
+            "Redux in Flutter"
           ],
         },
         {
@@ -35,6 +41,9 @@ const courseData = {
             "Material and Cupertino styles",
             "Layout with Row/Column",
             "Working with themes",
+            "Animations and transitions",
+            "Responsive design",
+            "Custom painting"
           ],
         },
       ],
@@ -51,11 +60,25 @@ const courseData = {
       topics: [
         {
           title: "OOP Concepts",
-          points: ["Classes and Objects", "Inheritance", "Polymorphism"],
+          points: [
+            "Classes and Objects",
+            "Inheritance",
+            "Polymorphism",
+            "Encapsulation",
+            "Abstraction",
+            "Interfaces"
+          ],
         },
         {
           title: "Core APIs",
-          points: ["Collections", "Streams", "Concurrency basics"],
+          points: [
+            "Collections",
+            "Streams",
+            "Concurrency basics",
+            "Generics",
+            "Lambda expressions",
+            "File I/O"
+          ],
         },
         {
           title: "Backend Work",
@@ -63,6 +86,9 @@ const courseData = {
             "Spring Boot basics",
             "REST controllers",
             "Dependency Injection",
+            "JPA and Hibernate",
+            "Database connectivity",
+            "Unit testing with JUnit"
           ],
         },
       ],
