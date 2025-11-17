@@ -108,6 +108,7 @@ const CourseDetail = ({ title, description, content }: {
 }) => {
   const [enrolled, setEnrolled] = React.useState(false);
   const [progress, setProgress] = React.useState<'not started' | 'started'>('not started');
+  const [showConfirm, setShowConfirm] = React.useState(false);
 
   React.useEffect(() => {
     const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses') || '[]');
@@ -131,9 +132,18 @@ const CourseDetail = ({ title, description, content }: {
   };
 
   const handleResetProgress = () => {
+    setShowConfirm(true);
+  };
+
+  const confirmReset = () => {
     localStorage.clear();
     setEnrolled(false);
     setProgress('not started');
+    setShowConfirm(false);
+  };
+
+  const cancelReset = () => {
+    setShowConfirm(false);
   };
 
   return (
@@ -143,6 +153,7 @@ const CourseDetail = ({ title, description, content }: {
         background: COLORS.secondary.whiteCard,
         boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
         borderRadius: 16,
+        position: 'relative',
       }}
     >
       <h1
@@ -176,21 +187,85 @@ const CourseDetail = ({ title, description, content }: {
           {enrolled ? 'Enrolled' : 'Enroll Course'}
         </button>
         {enrolled && (
-          <button
-            onClick={handleResetProgress}
-            style={{
-              background: COLORS.primary.navyBlue,
-              color: '#fff',
-              border: 'none',
-              borderRadius: 8,
-              padding: '10px 24px',
-              fontWeight: 600,
-              fontSize: 16,
-              cursor: 'pointer',
-            }}
-          >
-            Reset Progress
-          </button>
+          <>
+            <button
+              onClick={handleResetProgress}
+              style={{
+                background: COLORS.primary.navyBlue,
+                color: '#fff',
+                border: 'none',
+                borderRadius: 8,
+                padding: '10px 24px',
+                fontWeight: 600,
+                fontSize: 16,
+                cursor: 'pointer',
+              }}
+            >
+              Reset Progress
+            </button>
+            {showConfirm && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  background: 'rgba(0,0,0,0.18)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 10,
+                }}
+              >
+                <div
+                  style={{
+                    background: COLORS.secondary.whiteCard,
+                    borderRadius: 12,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                    padding: 32,
+                    minWidth: 320,
+                    textAlign: 'center',
+                  }}
+                >
+                  <p style={{ fontSize: 18, marginBottom: 24, color: COLORS.primary.navyBlue }}>
+                    Are you sure you want to reset your progress for this course?
+                  </p>
+                  <button
+                    onClick={confirmReset}
+                    style={{
+                      background: COLORS.accent.highlightYellow,
+                      color: COLORS.primary.navyBlue,
+                      border: 'none',
+                      borderRadius: 8,
+                      padding: '10px 24px',
+                      fontWeight: 600,
+                      fontSize: 16,
+                      marginRight: 16,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Yes, Reset
+                  </button>
+                  <button
+                    onClick={cancelReset}
+                    style={{
+                      background: COLORS.primary.navyBlue,
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 8,
+                      padding: '10px 24px',
+                      fontWeight: 600,
+                      fontSize: 16,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
         <span style={{ fontWeight: 500, color: COLORS.primary.navyBlue }}>
           Status: {enrolled ? 'Enrolled' : 'Not Enrolled'} | Progress: {progress === 'started' ? 'Course started' : 'Not started'}
