@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
+import Chatbot from "@/src/components/Chatbot";
 
 const courseData = {
   flutter: {
@@ -96,36 +97,42 @@ const courseData = {
   },
 };
 
-const CourseDetail = ({ title, description, content }) => {
+const CourseDetail = ({ title, description, content }: {
+  title: string;
+  description: string;
+  content: {
+    overview: string;
+    topics: { title: string; points: string[] }[];
+  };
+}) => {
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-4">{title}</h1>
       <p className="text-gray-600 mb-6">{description}</p>
-
       <div className="mb-10">
         <h2 className="text-2xl font-semibold mb-2">Overview</h2>
         <p className="leading-relaxed">{content.overview}</p>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {content.topics.map((t, i) => (
+        {content.topics.map((t: { title: string; points: string[] }, i: number) => (
           <div key={i} className="p-4 border rounded-lg shadow-sm">
             <h3 className="text-xl font-semibold mb-2">{t.title}</h3>
             <ul className="list-disc ml-5 space-y-1">
-              {t.points.map((p, idx) => (
+              {t.points.map((p: string, idx: number) => (
                 <li key={idx}>{p}</li>
               ))}
             </ul>
           </div>
         ))}
       </div>
+      <Chatbot courseContent={JSON.stringify(content)} />
     </div>
   );
 };
 
 const CourseDetailPage = () => {
   const params = useParams();
-  const course = courseData[params.slug];
+  const course = courseData[(params.slug as keyof typeof courseData) ?? ""];
 
   if (!course) {
     return <div className="text-center py-20">Course not found.</div>;
