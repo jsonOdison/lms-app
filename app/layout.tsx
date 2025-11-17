@@ -32,7 +32,7 @@ export default function RootLayout({
           
           <header className="bg-[#20364A] text-white py-4">
             <div className="container mx-auto px-6 flex justify-between items-center">
-              <h1 className="text-2xl font-bold">LMS</h1>
+              <h1 className="text-2xl font-bold">ElevateHub</h1>
               <nav>
                 <ul className="flex space-x-4">
                   <li>
