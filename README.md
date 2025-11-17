@@ -34,3 +34,31 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Folder structure planning for LMS app
+
+This structure will include reusable components, pages, and utilities
+
+src/
+  components/  // Reusable UI components
+    Button.tsx
+    Card.tsx
+    Navbar.tsx
+  pages/  // Next.js pages
+    index.tsx  // Landing page
+    courses/
+      index.tsx  // Courses listing page
+      [slug].tsx  // Dynamic course page
+  styles/  // Global and reusable styles
+    globals.css
+  utils/  // Utility functions
+    fetcher.ts  // For API calls
+    helpers.ts  // Miscellaneous helpers
+  features/  // Feature-specific components
+    AI_Tutor/
+      index.tsx  // AI Tutor component
+    ProgressIndicator/
+      index.tsx  // Progress indicator component
+  public/  // Static assets
+    images/
+    icons/
