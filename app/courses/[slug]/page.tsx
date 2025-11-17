@@ -106,6 +106,36 @@ const CourseDetail = ({ title, description, content }: {
     topics: { title: string; points: string[] }[];
   };
 }) => {
+  const [enrolled, setEnrolled] = React.useState(false);
+  const [progress, setProgress] = React.useState<'not started' | 'started'>('not started');
+
+  React.useEffect(() => {
+    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses') || '[]');
+    setEnrolled(enrolledCourses.includes(title));
+    const courseProgress = JSON.parse(localStorage.getItem('courseProgress') || '{}');
+    setProgress(courseProgress[title] || 'not started');
+  }, [title]);
+
+  const handleEnroll = () => {
+    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses') || '[]');
+    if (!enrolledCourses.includes(title)) {
+      enrolledCourses.push(title);
+      localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+      setEnrolled(true);
+      // Start course progress
+      const courseProgress = JSON.parse(localStorage.getItem('courseProgress') || '{}');
+      courseProgress[title] = 'started';
+      localStorage.setItem('courseProgress', JSON.stringify(courseProgress));
+      setProgress('started');
+    }
+  };
+
+  const handleResetProgress = () => {
+    localStorage.clear();
+    setEnrolled(false);
+    setProgress('not started');
+  };
+
   return (
     <div
       className="max-w-4xl mx-auto p-6 rounded shadow-md"
@@ -127,6 +157,45 @@ const CourseDetail = ({ title, description, content }: {
       >
         {description}
       </p>
+      <div style={{ marginBottom: 16, display: 'flex', alignItems: 'center', gap: 12 }}>
+        <button
+          onClick={handleEnroll}
+          disabled={enrolled}
+          style={{
+            background: enrolled ? COLORS.primary.beige : COLORS.accent.highlightYellow,
+            color: COLORS.primary.navyBlue,
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 24px',
+            fontWeight: 600,
+            fontSize: 18,
+            cursor: enrolled ? 'not-allowed' : 'pointer',
+            marginRight: 8,
+          }}
+        >
+          {enrolled ? 'Enrolled' : 'Enroll Course'}
+        </button>
+        {enrolled && (
+          <button
+            onClick={handleResetProgress}
+            style={{
+              background: COLORS.primary.navyBlue,
+              color: '#fff',
+              border: 'none',
+              borderRadius: 8,
+              padding: '10px 24px',
+              fontWeight: 600,
+              fontSize: 16,
+              cursor: 'pointer',
+            }}
+          >
+            Reset Progress
+          </button>
+        )}
+        <span style={{ fontWeight: 500, color: COLORS.primary.navyBlue }}>
+          Status: {enrolled ? 'Enrolled' : 'Not Enrolled'} | Progress: {progress === 'started' ? 'Course started' : 'Not started'}
+        </span>
+      </div>
       <div className="mb-10">
         <h2
           className="text-2xl font-semibold mb-2"
