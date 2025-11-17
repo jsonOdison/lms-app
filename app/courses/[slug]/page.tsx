@@ -3,6 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import Chatbot from "@/src/components/Chatbot";
+import { COLORS } from "@/src/constants/colors";
 
 const courseData = {
   flutter: {
@@ -106,20 +107,58 @@ const CourseDetail = ({ title, description, content }: {
   };
 }) => {
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">{title}</h1>
-      <p className="text-gray-600 mb-6">{description}</p>
+    <div
+      className="max-w-4xl mx-auto p-6 rounded shadow-md"
+      style={{
+        background: COLORS.secondary.whiteCard,
+        boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
+        borderRadius: 16,
+      }}
+    >
+      <h1
+        className="text-4xl font-bold mb-4"
+        style={{ color: COLORS.primary.darkBlueText }}
+      >
+        {title}
+      </h1>
+      <p
+        className="mb-6"
+        style={{ color: COLORS.secondary.greyText, fontSize: 18 }}
+      >
+        {description}
+      </p>
       <div className="mb-10">
-        <h2 className="text-2xl font-semibold mb-2">Overview</h2>
-        <p className="leading-relaxed">{content.overview}</p>
+        <h2
+          className="text-2xl font-semibold mb-2"
+          style={{ color: COLORS.primary.navyBlue }}
+        >
+          Overview
+        </h2>
+        <p className="leading-relaxed" style={{ color: COLORS.primary.darkerBlueText }}>
+          {content.overview}
+        </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {content.topics.map((t: { title: string; points: string[] }, i: number) => (
-          <div key={i} className="p-4 border rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">{t.title}</h3>
+          <div
+            key={i}
+            className="p-4 border rounded-lg shadow-md"
+            style={{
+              background: COLORS.secondary.lightBlue,
+              borderRadius: 12,
+              border: `1px solid ${COLORS.primary.beige}`,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+            }}
+          >
+            <h3
+              className="text-xl font-semibold mb-2"
+              style={{ color: COLORS.primary.navyBlue }}
+            >
+              {t.title}
+            </h3>
             <ul className="list-disc ml-5 space-y-1">
               {t.points.map((p: string, idx: number) => (
-                <li key={idx}>{p}</li>
+                <li key={idx} style={{ color: COLORS.primary.darkerBlueText, fontSize: 16 }}>{p}</li>
               ))}
             </ul>
           </div>
