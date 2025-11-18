@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Card from '../../src/components/Card';
-import { courses } from '../../src/constants/courses';
-import { COLORS } from '../../src/constants/colors';
+import Card from '@/src/components/Card';
+import { courses as courseList } from '@/src/constants/courses';
+import { COLORS } from '@/src/constants/colors';
 
 const CoursesPage: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const CoursesPage: React.FC = () => {
         Our Courses
       </h1>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-        {courses.map((course) => (
+        {courseList.map((course) => (
           <Card key={course.slug} title={course.title} description={course.description}>
             <Link href={`/courses/${course.slug}`}>
               <div
