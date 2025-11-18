@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Chatbot.module.css";
 
 interface ChatbotProps {
   courseContent: string;
@@ -61,26 +62,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ courseContent }) => {
 
   return (
     <div
-      style={{
-        position: "fixed",
-        right: 24,
-        bottom: 24,
-        zIndex: 1000,
-        background: "#fff",
-        borderRadius: 12,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
-        border: "1px solid #e5e7eb",
-        padding: minimized ? "8px 24px" : 24,
-        maxWidth: 380,
-        width: "100%",
-        minWidth: 320,
-        transition: "box-shadow 0.2s, padding 0.2s",
-      }}
+      className={styles.chatbotContainer}
+      style={{ padding: minimized ? "8px 24px" : "24px" }}
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.16)")}
       onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.10)")}
     >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h2 style={{ fontWeight: "bold", marginBottom: minimized ? 0 : 8, color: "#007bff", fontSize: 20 }}>Course Q&A Chatbot</h2>
+      <div className={styles.header}>
+        <h2 style={{ marginBottom: minimized ? 0 : 8 }}>Course Q&A Chatbot</h2>
         <button
           onClick={() => setMinimized((m) => !m)}
           style={{
@@ -100,92 +88,37 @@ const Chatbot: React.FC<ChatbotProps> = ({ courseContent }) => {
       </div>
       {!minimized && (
         <>
-          <div
-            style={{
-              minHeight: 120,
-              maxHeight: "18em",
-              marginBottom: 12,
-              background: "#f5f8fa",
-              borderRadius: 8,
-              padding: 10,
-              boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-              overflowY: "auto",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <div className={styles.chatWindow}>
             {messages.slice(-10).map((msg, idx) => (
-              <div key={idx} style={{ marginBottom: 10 }}>
+              <div key={idx} className={styles.message}>
                 {msg.user ? (
                   <div style={{ textAlign: "right" }}>
-                    <span
-                      style={{
-                        display: "inline-block",
-                        background: "#e3f2fd",
-                        color: "#007bff",
-                        borderRadius: 8,
-                        padding: "6px 12px",
-                        fontWeight: 500,
-                        boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
-                      }}
-                    >
+                    <span className={styles.userMessage}>
                       <b>You:</b> {msg.user}
                     </span>
                   </div>
                 ) : null}
                 <div style={{ textAlign: "left", marginTop: 4 }}>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      background: "#e8f5e9",
-                      color: "#388e3c",
-                      borderRadius: 8,
-                      padding: "6px 12px",
-                      fontWeight: 500,
-                      boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
-                    }}
-                  >
+                  <span className={styles.botMessage}>
                     <b>AI:</b> {msg.bot}
                   </span>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className={styles.inputRow}>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about this course..."
-              style={{
-                flex: 1,
-                padding: 10,
-                borderRadius: 8,
-                border: "1px solid #e0e0e0",
-                outline: "none",
-                fontSize: 16,
-                background: "#f5f8fa",
-                transition: "border-color 0.2s",
-              }}
+              className={styles.input}
               disabled={loading}
-              onFocus={(e) => (e.currentTarget.style.borderColor = "#007bff")}
-              onBlur={(e) => (e.currentTarget.style.borderColor = "#e0e0e0")}
             />
             <button
               onClick={handleSend}
               disabled={loading || !input.trim()}
-              style={{
-                padding: "10px 20px",
-                borderRadius: 8,
-                background: loading ? "#90caf9" : "#007bff",
-                color: "#fff",
-                border: "none",
-                fontWeight: 600,
-                fontSize: 16,
-                cursor: loading ? "not-allowed" : "pointer",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-                transition: "background 0.2s, box-shadow 0.2s",
-              }}
+              className={styles.button}
             >
               {loading ? "..." : "Send"}
             </button>

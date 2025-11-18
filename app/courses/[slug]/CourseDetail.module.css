@@ -1,0 +1,66 @@
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  background: var(--white-card, #fff);
+  position: relative;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--dark-blue-text, #1C3142);
+}
+
+.description {
+  margin-bottom: 1.5rem;
+  color: var(--grey-text, #6F7A84);
+  font-size: 1.125rem;
+}
+
+.statusRow {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statusText {
+  font-weight: 500;
+  color: var(--navy-blue, #20364A);
+}
+
+.overviewTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--navy-blue, #20364A);
+}
+
+.overviewText {
+  color: var(--darker-blue-text, #0F2535);
+  line-height: 1.7;
+}
+
+.topicCard {
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: var(--light-blue, #D9E8E4);
+  border: 1px solid var(--beige, #F4E6B0);
+}
+
+.topicTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--navy-blue, #20364A);
+}
+
+.topicPoint {
+  color: var(--darker-blue-text, #0F2535);
+  font-size: 1rem;
+}
