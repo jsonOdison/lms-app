@@ -8,7 +8,7 @@ export default function Home() {
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 text-center md:text-left">
           <h1 className="text-6xl font-extrabold text-[#1C3142] mb-6 leading-tight">
-            Empower Your Team with Growth, Systems, and AI
+            Founders & teams learning growth, systems, and AI
           </h1>
           <p className="text-xl text-[#6F7A84] mb-8 leading-relaxed">
             Learn essential growth, systems, and AI skills through focused, practical courses built for modern founders and teams.
