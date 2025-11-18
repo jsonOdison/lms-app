@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "next/navigation";
 import Chatbot from "@/src/components/Chatbot";
 import { COLORS } from "@/src/constants/colors";
+import Button from "@/src/components/Button";
 
 const courseData = {
   flutter: {
@@ -169,40 +170,23 @@ const CourseDetail = ({ title, description, content }: {
         {description}
       </p>
       <div style={{ marginBottom: 16, display: 'flex', alignItems: 'center', gap: 12 }}>
-        <button
+        <Button
           onClick={handleEnroll}
           disabled={enrolled}
-          style={{
-            background: enrolled ? COLORS.primary.beige : COLORS.accent.highlightYellow,
-            color: COLORS.primary.navyBlue,
-            border: 'none',
-            borderRadius: 8,
-            padding: '10px 24px',
-            fontWeight: 600,
-            fontSize: 18,
-            cursor: enrolled ? 'not-allowed' : 'pointer',
-            marginRight: 8,
-          }}
+          variant="primary"
+          style={{ marginRight: 8 }}
         >
           {enrolled ? 'Enrolled' : 'Enroll Course'}
-        </button>
+        </Button>
         {enrolled && (
           <>
-            <button
+            <Button
               onClick={handleResetProgress}
-              style={{
-                background: COLORS.primary.navyBlue,
-                color: '#fff',
-                border: 'none',
-                borderRadius: 8,
-                padding: '10px 24px',
-                fontWeight: 600,
-                fontSize: 16,
-                cursor: 'pointer',
-              }}
+              variant="navy"
+              style={{ fontSize: 16 }}
             >
               Reset Progress
-            </button>
+            </Button>
             {showConfirm && (
               <div
                 style={{
@@ -231,37 +215,20 @@ const CourseDetail = ({ title, description, content }: {
                   <p style={{ fontSize: 18, marginBottom: 24, color: COLORS.primary.navyBlue }}>
                     Are you sure you want to reset your progress for this course?
                   </p>
-                  <button
+                  <Button
                     onClick={confirmReset}
-                    style={{
-                      background: COLORS.accent.highlightYellow,
-                      color: COLORS.primary.navyBlue,
-                      border: 'none',
-                      borderRadius: 8,
-                      padding: '10px 24px',
-                      fontWeight: 600,
-                      fontSize: 16,
-                      marginRight: 16,
-                      cursor: 'pointer',
-                    }}
+                    variant="primary"
+                    style={{ marginRight: 16, fontSize: 16 }}
                   >
                     Yes, Reset
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={cancelReset}
-                    style={{
-                      background: COLORS.primary.navyBlue,
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 8,
-                      padding: '10px 24px',
-                      fontWeight: 600,
-                      fontSize: 16,
-                      cursor: 'pointer',
-                    }}
+                    variant="navy"
+                    style={{ fontSize: 16 }}
                   >
                     Cancel
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

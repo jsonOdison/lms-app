@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { PropsWithChildren } from "react";
+import styles from "./Button.module.css";
 
-interface ButtonProps {
-  label: string;
-  onClick: () => void;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "navy";
+  disabled?: boolean;
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, className }) => {
+const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
+  variant = "primary",
+  disabled,
+  children,
+  className = "",
+  ...props
+}) => {
+  const classes = [
+    styles.button,
+    variant === "primary" ? styles["button--primary"] : "",
+    variant === "navy" ? styles["button--navy"] : "",
+    disabled ? styles["button--disabled"] : "",
+    className,
+  ].filter(Boolean).join(" ");
+
   return (
-    <button
-      onClick={onClick}
-      className={`px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 ${className}`}
-    >
-      {label}
+    <button className={classes} disabled={disabled} {...props}>
+      {children}
     </button>
   );
 };

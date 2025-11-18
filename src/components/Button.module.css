@@ -1,0 +1,26 @@
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button--primary {
+  background: var(--primary-yellow, #FFD645);
+  color: var(--primary-navy, #20364A);
+}
+
+.button--disabled {
+  background: var(--primary-beige, #F4E6B0);
+  color: var(--primary-navy, #20364A);
+  cursor: not-allowed;
+}
+
+.button--navy {
+  background: var(--primary-navy, #20364A);
+  color: #fff;
+  font-size: 16px;
+}
