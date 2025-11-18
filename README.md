@@ -1,64 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ElevateHub — AI-Powered Mini LMS
 
-## Getting Started
+A minimal, end-to-end LMS prototype built in one day using Next.js, TailwindCSS, and OpenAI.
+Deployed on Vercel.
+Live demo: https://lms-app-ochre.vercel.app/
 
-First, run the development server:
+Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ElevateHub is a compact learning platform built for the assignment:
+“In one day, use AI tools to build and deploy a small AI-powered LMS prototype.”
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The project focuses strictly on speed, AI-assisted development, and delivering a functional demo with a clean architecture.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Features
+1. Landing Page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+App title + one-line pitch for founders and teams
 
-## Learn More
+Primary CTA: “View Courses”
 
-To learn more about Next.js, take a look at the following resources:
+2. Courses Page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+List of sample courses
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each course has a title + short description
 
-## Deploy on Vercel
+3. Course Detail Page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Overview section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Topic breakdown
 
-## Folder structure planning for LMS app
+Progress indicator stored in localStorage
 
-This structure will include reusable components, pages, and utilities
+States: Enrolled / Not Enrolled
+
+Progress: Started / Not Started
+
+Enroll button
+
+Reset progress modal
+
+4. AI-Powered Course Tutor
+
+Chatbot powered by OpenAI
+
+Uses course-specific content only
+
+Behaves like a lightweight RAG-lite system
+
+Answers questions strictly based on the material for that course
+
+5. Deployment
+
+Fully deployed on Vercel
+
+GitHub repo is public
+
+Tech Stack
+
+Next.js (App Router)
+
+TailwindCSS
+
+TypeScript
+
+OpenAI API
+
+LocalStorage for progress state
+
+Vercel for hosting
+
+Project Structure
+app/
+  api/
+    chat/        → AI Q&A API route
+  courses/       → Course pages + dynamic course detail
+  globals.css    → Tailwind + app styles
+  layout.tsx     → App shell
+  page.tsx       → Landing page
 
 src/
-  components/  // Reusable UI components
-    Button.tsx
-    Card.tsx
-    Navbar.tsx
-  pages/  // Next.js pages
-    index.tsx  // Landing page
-    courses/
-      index.tsx  // Courses listing page
-      [slug].tsx  // Dynamic course page
-  styles/  // Global and reusable styles
-    globals.css
-  utils/  // Utility functions
-    fetcher.ts  // For API calls
-    helpers.ts  // Miscellaneous helpers
-  features/  // Feature-specific components
-    AI_Tutor/
-      index.tsx  // AI Tutor component
-    ProgressIndicator/
-      index.tsx  // Progress indicator component
-  public/  // Static assets
-    images/
-    icons/
+  components/    → UI components (Button, Chatbot, etc.)
+  constants/     → Course data + color tokens
+
+How It Works
+1. AI-Tutor
+
+A course’s content is injected into the system prompt.
+The chatbot answers only using that content, preventing generic LLM responses.
+
+2. Progress Tracking
+
+LocalStorage stores:
+
+enrolledCourses
+
+courseProgress
+
+This avoids backend complexity while satisfying the assignment requirement.
+
+3. Deployment Pipeline
+
+GitHub repo → Vercel auto-deploy
+
+Environment variables for the OpenAI API key
+
+Why This Project Meets the Assignment Goals
+
+Shipped in one day
+
+Heavy use of AI for coding, components, content, and architecture
+
+Fully deployed and functional
+
+Clean LMS slice with enrollment + progress + AI tutor
+
+Uses modern, production-ready tools (Next.js, Tailwind, Vercel)
+
+Running Locally
+git clone <repo-url>
+cd elevatehub
+npm install
+npm run dev
+
+
+Set the env variable:
+
+OPENAI_API_KEY=your-key-here
