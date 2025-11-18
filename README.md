@@ -53,4 +53,29 @@ The focus is on **speed**, **AI-assisted development**, and a **clean, functiona
 
 ---
 
-## **Project Structure**
+
+## **How It Works**
+
+### **1. AI Tutor**
+- Injects course content directly into the LLM prompt  
+- Ensures answers remain **strictly content-bound**  
+
+### **2. Progress Tracking**
+Stored in `localStorage`:
+- `enrolledCourses`  
+- `courseProgress`  
+
+No backend required.
+
+### **3. Deployment Pipeline**
+- GitHub → automatic Vercel deploy  
+- Environment variable required for OpenAI  
+
+---
+
+## **Running Locally**
+```bash
+git clone <repo-url>
+cd elevatehub
+npm install
+npm run dev
