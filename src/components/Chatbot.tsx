@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GREETINGS } from "../constants/chatbot";
+import { GREETINGS } from "@/src/constants/chatbot";
 import styles from "./Chatbot.module.css";
 
 interface ChatbotProps {
@@ -49,25 +49,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ courseContent }) => {
 
   return (
     <div
-      className={styles.chatbotContainer}
-      style={{ padding: minimized ? "8px 24px" : "24px" }}
-      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.16)")}
-      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.10)")}
+      className={`${styles.chatbotContainer} ${minimized ? 'p-2 px-6' : 'p-6'}`}
     >
       <div className={styles.header}>
-        <h2 style={{ marginBottom: minimized ? 0 : 8 }}>Course Q&A Chatbot</h2>
+        <h2 className={minimized ? '' : 'mb-2'}>Course Q&A Chatbot</h2>
         <button
           onClick={() => setMinimized((m) => !m)}
-          style={{
-            background: "none",
-            border: "none",
-            fontSize: 22,
-            color: "#007bff",
-            cursor: "pointer",
-            marginLeft: 8,
-            lineHeight: 1,
-            padding: 0,
-          }}
+          className="bg-transparent border-none text-blue-600 text-xl cursor-pointer ml-2 p-0"
           aria-label={minimized ? "Open chat" : "Minimize chat"}
         >
           {minimized ? "🗨️" : "—"}
@@ -79,13 +67,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ courseContent }) => {
             {messages.slice(-10).map((msg, idx) => (
               <div key={idx} className={styles.message}>
                 {msg.user ? (
-                  <div style={{ textAlign: "right" }}>
+                  <div className="text-right">
                     <span className={styles.userMessage}>
                       <b>You:</b> {msg.user}
                     </span>
                   </div>
                 ) : null}
-                <div style={{ textAlign: "left", marginTop: 4 }}>
+                <div className="text-left mt-1">
                   <span className={styles.botMessage}>
                     <b>AI:</b> {msg.bot}
                   </span>

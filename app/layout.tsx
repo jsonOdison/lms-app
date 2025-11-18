@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen flex flex-col">
           
-          <header className="bg-[#20364A] text-white py-4">
+        <header className="bg-[#20364A] text-white py-4">
             <div className="container mx-auto px-6 flex justify-between items-center">
               <h1 className="text-2xl font-bold">ElevateHub</h1>
               <nav>
@@ -51,7 +51,7 @@ export default function RootLayout({
             {children}
           </main>
 
-          <footer className="bg-[#20364A] text-white py-4 text-center">
+          <footer className="bg-blue-900 text-white py-4 text-center">
             <p>&copy; 2025 LMS App. All rights reserved.</p>
           </footer>
 
