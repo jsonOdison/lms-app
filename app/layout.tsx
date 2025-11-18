@@ -51,7 +51,7 @@ export default function RootLayout({
             {children}
           </main>
 
-          <footer className="bg-blue-900 text-white py-4 text-center">
+          <footer className="bg-[#20364A] text-white py-4 text-center">
             <p>&copy; 2025 LMS App. All rights reserved.</p>
           </footer>
 
